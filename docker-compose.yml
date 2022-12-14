@@ -16,3 +16,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./traefik.yml:/etc/traefik/traefik.yml:ro"
       - "./acme.json:/etc/traefik/acme.json"
+
+networks:
+  default:
+    name: traefik
