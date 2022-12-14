@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: "traefik"
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - "8080:8080" # Admin Web Port
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.yml:/etc/traefik/traefik.yml:ro"
+      - "./acme.json:/etc/traefik/acme.json"
